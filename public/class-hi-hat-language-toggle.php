@@ -265,15 +265,15 @@ class Hi_Hat_Language_Toggle {
 
         //get optional attributes and assign default values if not present
         extract( shortcode_atts( array(
-            'test_var' => false
+            'short_text' => false
         ), $attributes ));
 
-        return self::output_view($test_var, NULL, NULL);
+        return self::output_view($short_text, NULL, NULL);
 
 
     }
 
-    public static function output_view($test_var=false, $instance, $args){
+    public static function output_view($short_text=false, $instance, $args){
 
 		if(isset($args)) extract($args);
 
@@ -281,8 +281,8 @@ class Hi_Hat_Language_Toggle {
 		$langs = icl_get_languages('skip_missing=0&orderby=KEY&order=DIR&link_empty_to=/');
 
 		// shortcode parameter (not in use, here for referrence if needed)
-		if($test_var == NULL){
-			$test_var = $instance['test_var'];
+		if($short_text == NULL){
+			$short_text = $instance['short_text'];
 		}
 
 		//loop through each langauge
@@ -291,8 +291,14 @@ class Hi_Hat_Language_Toggle {
 				// echo "<pre>";
 				// var_dump($lang);
 				// echo "</pre>";
+
 				//it's not active, generate a link
-				$output .= '<a href="' . $lang['url'] . '" class="language-toggle">' . $lang['native_name'] . '</a>';
+				if($short_text || strtolower($short_text) === "true"){
+					$output .= '<a href="' . $lang['url'] . '" class="language-toggle">' . $lang['code'] . '</a>';
+				}else{
+					$output .= '<a href="' . $lang['url'] . '" class="language-toggle">' . $lang['native_name'] . '</a>';
+				}
+
 			}
 		}
 
