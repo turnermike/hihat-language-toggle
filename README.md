@@ -8,7 +8,11 @@ Use the shortcode in your posts/pages, or do_shortcode('[hihat_language_toggle]'
 
 ### Shortcode
 
-    [hihat_language_toggle test_var="true"]
+```
+[hihat_language_toggle short_text="false"]
+```
+
+If the "short_text" parameter is set to "true", the plugin will return "FR" rather than "French" and "EN" rather than "English".
 
 ---
 Developed by [Hi-hat Consulting](http://hi-hatconsulting.com)
